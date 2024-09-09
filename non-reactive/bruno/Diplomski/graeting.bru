@@ -1,0 +1,27 @@
+meta {
+  name: graeting
+  type: http
+  seq: 1
+}
+
+post {
+  url: http://localhost:8080/api/v1/quote
+  body: json
+  auth: none
+}
+
+body:json {
+  {
+    "company" : "HTEC",
+    "ticker": "htc",
+    "stockExchange": "masdac",
+    "quotePrice": 128,
+    "previousClose": 120,
+    "dailyChange": 8,
+    "dailyChangePercent": 3,
+    "open": 123,
+    "bid": 120,
+    "ask": 130,
+    "volume": 20
+  }
+}
