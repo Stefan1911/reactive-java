@@ -3,6 +3,7 @@ package com.diplomski.non_reactive.ucecase;
 import com.diplomski.non_reactive.model.StockQuote;
 import com.diplomski.non_reactive.persistence.StockQuoteRepository;
 import com.diplomski.non_reactive.service.CacheService;
+import com.diplomski.non_reactive.service.DownstreamService;
 import com.diplomski.non_reactive.service.MessageQueueService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -20,8 +21,10 @@ public class CreateStockQuoteUseCase {
 
     private final MessageQueueService messageQueueService;
 
+    private final DownstreamService downstreamService;
+
     public StockQuote create(final StockQuote stockQuote) throws InterruptedException, ExecutionException {
-        var messagingFuture = CompletableFuture.supplyAsync(() -> messageQueueService.sendMessage(stockQuote));
+        var messagingFuture = CompletableFuture.supplyAsync(() -> downstreamService.send(stockQuote));
         var cachingFuture = CompletableFuture.supplyAsync(() -> cacheService.cache(stockQuote));
         var persistenceFuture = CompletableFuture.supplyAsync(() -> repository.persist(stockQuote));
 

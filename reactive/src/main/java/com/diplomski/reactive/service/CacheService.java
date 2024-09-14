@@ -14,9 +14,10 @@ public class CacheService {
 
     private final ReactiveRedisOperations<String, StockQuote> reactiveRedisOperations;
 
-    public Mono<Boolean> cache(final StockQuote stockQuote) {
+    public Mono<StockQuote> cache(final StockQuote stockQuote) {
         return reactiveRedisOperations
                 .opsForValue()
-                .set(UUID.randomUUID().toString(), stockQuote);
+                .set(UUID.randomUUID().toString(), stockQuote)
+                .map((a) -> stockQuote);
     }
 }

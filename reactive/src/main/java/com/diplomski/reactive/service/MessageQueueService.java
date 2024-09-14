@@ -34,7 +34,7 @@ public class MessageQueueService {
                 .doOnError(e -> log.error("Send failed", e))
                 .subscribe(m -> {
                     if(m.isAck()) {
-                        log.info("Message sent");
+                        //log.info("Message sent");
                     }
                 });
 

@@ -3,6 +3,7 @@ package com.diplomski.reactive.usecase;
 import com.diplomski.reactive.model.StockQuote;
 import com.diplomski.reactive.persistence.StockQuoteRepository;
 import com.diplomski.reactive.service.CacheService;
+import com.diplomski.reactive.service.DownstreamService;
 import com.diplomski.reactive.service.MessageQueueService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -17,11 +18,11 @@ public class CreateStockQuoteUseCase {
 
     private final CacheService cacheService;
 
-    private final MessageQueueService messageQueueService;
+    private final DownstreamService downstreamService;
 
     public Mono<StockQuote> create(final StockQuote stockQuote) {
         return Mono.zip(
-                messageQueueService.sendMessage(stockQuote),
+                downstreamService.send(stockQuote),
                 cacheService.cache(stockQuote),
                 repository.persist(stockQuote)
         ).map(Tuple3::getT3);

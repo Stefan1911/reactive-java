@@ -13,7 +13,8 @@ import lombok.*;
 public class StockQuoteEntity {
     
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.AUTO, generator = "quote_id_gen")
+    @SequenceGenerator(name = "quote_id_gen", sequenceName = "quote_id_seq", allocationSize = 1)
     private int id;
 
     private String company;

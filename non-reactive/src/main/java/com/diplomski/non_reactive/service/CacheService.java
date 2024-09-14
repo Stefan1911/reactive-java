@@ -13,9 +13,9 @@ public class CacheService {
 
     private final RedisTemplate<String, String> template;
 
-    public Boolean cache(final StockQuote stockQuote) {
-        template.opsForValue().set(UUID.randomUUID().toString(), stockQuote.toString() );
+    public StockQuote cache(final StockQuote stockQuote) {
+        template.opsForValue().set(UUID.randomUUID().toString(), stockQuote.toString());
 
-        return true;
+        return stockQuote;
     }
 }
