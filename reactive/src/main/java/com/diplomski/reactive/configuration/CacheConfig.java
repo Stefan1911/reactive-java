@@ -11,7 +11,7 @@ import org.springframework.data.redis.serializer.RedisSerializationContext;
 import org.springframework.data.redis.serializer.StringRedisSerializer;
 
 @Configuration
-public class RedisConfig {
+public class CacheConfig {
 
     @Bean
     ReactiveRedisOperations<String, StockQuote> redisOperations(ReactiveRedisConnectionFactory factory) {
