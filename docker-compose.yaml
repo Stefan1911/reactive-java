@@ -1,0 +1,28 @@
+version: '3.8'
+services:
+
+  postgres-service:
+    container_name: 'diplomski-db'
+    image: postgres:15
+    restart: always
+    ports:
+      - "5471:5432"
+    environment:
+      POSTGRES_DB: diplomski
+      POSTGRES_USER: root
+      POSTGRES_PASSWORD: root
+  redis:
+    container_name: 'diplomski-redis'
+    image: 'redis:latest'
+    command: redis-server --loglevel warning --requirepass s3KYGcA7VFW3jxLtoGw6Usi6
+    ports:
+      - '6371:6379'
+  rabbitmq:
+    image: rabbitmq:3-management-alpine
+    container_name: 'rabbitmq'
+    ports:
+      - 5672:5672
+      - 15672:15672
+    volumes:
+      - ~/.docker-conf/rabbitmq/data/:/var/lib/rabbitmq/
+      - ~/.docker-conf/rabbitmq/log/:/var/log/rabbitmq
