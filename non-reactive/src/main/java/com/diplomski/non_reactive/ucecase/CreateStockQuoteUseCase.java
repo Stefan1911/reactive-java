@@ -4,7 +4,6 @@ import com.diplomski.non_reactive.model.StockQuote;
 import com.diplomski.non_reactive.persistence.StockQuoteRepository;
 import com.diplomski.non_reactive.service.CacheService;
 import com.diplomski.non_reactive.service.DownstreamService;
-import com.diplomski.non_reactive.service.MessageQueueService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -19,7 +18,6 @@ public class CreateStockQuoteUseCase {
 
     private final CacheService cacheService;
 
-    private final MessageQueueService messageQueueService;
 
     private final DownstreamService downstreamService;
 

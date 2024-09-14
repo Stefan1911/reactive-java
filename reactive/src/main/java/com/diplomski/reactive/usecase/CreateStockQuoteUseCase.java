@@ -4,7 +4,6 @@ import com.diplomski.reactive.model.StockQuote;
 import com.diplomski.reactive.persistence.StockQuoteRepository;
 import com.diplomski.reactive.service.CacheService;
 import com.diplomski.reactive.service.DownstreamService;
-import com.diplomski.reactive.service.MessageQueueService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import reactor.core.publisher.Mono;
