@@ -16,9 +16,7 @@ public class StockQuoteRepository {
     public Mono<StockQuote> persist(StockQuote stockQuote) {
         final var stockQuoteEntity = new StockQuoteEntity(stockQuote);
 
-        var asd = entityRepository.save(stockQuoteEntity);
-
-        return asd
+        return entityRepository.save(stockQuoteEntity)
                 .map(StockQuoteEntity::toDomainModel);
     }
 }

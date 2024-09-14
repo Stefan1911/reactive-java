@@ -1,4 +1,4 @@
-package com.diplomski.reactive.hendler;
+package com.diplomski.reactive.controller;
 
 import com.diplomski.reactive.model.StockQuote;
 import com.diplomski.reactive.usecase.CreateStockQuoteUseCase;
@@ -13,7 +13,7 @@ import reactor.core.publisher.Mono;
 @RestController
 @RequestMapping("/api/v1/quote")
 @RequiredArgsConstructor
-public class StockQuoteHandler {
+public class StockQuoteController {
 
     private final CreateStockQuoteUseCase createStockQuoteUsecase;
 

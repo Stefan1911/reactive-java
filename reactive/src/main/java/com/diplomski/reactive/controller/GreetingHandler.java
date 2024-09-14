@@ -1,4 +1,4 @@
-package com.diplomski.reactive.hendler;
+package com.diplomski.reactive.controller;
 
 import com.diplomski.reactive.model.Greeting;
 import org.springframework.http.MediaType;
