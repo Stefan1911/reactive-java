@@ -7,7 +7,7 @@ class StockQuoteTestUser(HttpUser):
     @task
     def hello_world(self):
 
-        jsonBody = {
+        qupteJsonBody = {
             "company" : "HTEC",
             "ticker": "htc",
             "stockExchange": "masdac",
@@ -21,7 +21,16 @@ class StockQuoteTestUser(HttpUser):
             "volume": 20
         }
 
-        response = self.client.post("/api/v1/quote", json=jsonBody)
+        optionJsonBody = {
+            "callOptionPrice" : 120,
+            "currentStockPrice" : 123,
+            "strikePrice" : 120,
+            "riskFreeInterestRate": 120,
+            "timeToMaturity": 120
+        }
+
+        # response = self.client.post("/api/v1/quote", json=qupteJsonBody)
+        response = self.client.post("/api/v1/option", json=optionJsonBody)
         print(response)
 
 

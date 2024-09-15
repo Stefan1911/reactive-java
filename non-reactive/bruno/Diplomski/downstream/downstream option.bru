@@ -1,0 +1,22 @@
+meta {
+  name: downstream option
+  type: http
+  seq: 2
+}
+
+post {
+  url: http://localhost:8082/api/v1/downstream/option
+  body: json
+  auth: none
+}
+
+body:json {
+  {
+      "id": 444,
+      "callOptionPrice" : 120,
+      "currentStockPrice" : 123,
+      "strikePrice" : 120,
+      "riskFreeInterestRate": 120,
+      "timeToMaturity": 120
+  }
+}

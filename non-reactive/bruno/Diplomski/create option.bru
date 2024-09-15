@@ -1,0 +1,21 @@
+meta {
+  name: create option
+  type: http
+  seq: 2
+}
+
+post {
+  url: http://localhost:8080/api/v1/option
+  body: json
+  auth: none
+}
+
+body:json {
+  {
+      "callOptionPrice" : 120,
+      "currentStockPrice" : 123,
+      "strikePrice" : 120,
+      "riskFreeInterestRate": 120,
+      "timeToMaturity": 120
+  }
+}

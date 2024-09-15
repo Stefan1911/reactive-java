@@ -18,7 +18,6 @@ public class CreateStockQuoteUseCase {
 
     private final CacheService cacheService;
 
-
     private final DownstreamService downstreamService;
 
     public StockQuote create(final StockQuote stockQuote) throws InterruptedException, ExecutionException {

@@ -1,5 +1,6 @@
 package com.diplomski.reactive.service;
 
+import com.diplomski.reactive.model.StockOption;
 import com.diplomski.reactive.model.StockQuote;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.redis.core.ReactiveRedisOperations;
@@ -12,12 +13,20 @@ import java.util.UUID;
 @RequiredArgsConstructor
 public class CacheService {
 
-    private final ReactiveRedisOperations<String, StockQuote> reactiveRedisOperations;
+    private final ReactiveRedisOperations<String, StockQuote> stockQuoteRedisOperations;
+    private final ReactiveRedisOperations<String, StockOption> stockOptionRedisOperations;
 
     public Mono<StockQuote> cache(final StockQuote stockQuote) {
-        return reactiveRedisOperations
+        return stockQuoteRedisOperations
                 .opsForValue()
                 .set(UUID.randomUUID().toString(), stockQuote)
                 .map((a) -> stockQuote);
+    }
+
+    public Mono<StockOption> cache(final StockOption stockOption) {
+        return stockOptionRedisOperations
+                .opsForValue()
+                .set(stockOption.getId().toString(), stockOption)
+                .map((a) -> stockOption);
     }
 }
