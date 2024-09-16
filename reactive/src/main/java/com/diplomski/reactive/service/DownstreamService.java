@@ -14,6 +14,7 @@ public class DownstreamService {
     private final WebClient webClient;
 
     private final static String QUOTE_ENDPOINT = "http://localhost:8082/api/v1/downstream/quote";
+    private final static String CALCULATE_OPTION_ENDPOINT = "http://localhost:8082/api/v1/downstream/calculate/option";
     private final static String OPTION_ENDPOINT = "http://localhost:8082/api/v1/downstream/option";
 
     public Mono<StockQuote> send(final StockQuote stockQuote) {
@@ -24,9 +25,17 @@ public class DownstreamService {
                 .bodyToMono(StockQuote.class);
     }
 
-    public Mono<StockOption> calculatePrice(final StockOption stockOption) {
+    public Mono<StockOption> send(final StockOption stockOption) {
         return webClient.post()
                 .uri(OPTION_ENDPOINT)
+                .bodyValue(stockOption)
+                .retrieve()
+                .bodyToMono(StockOption.class);
+    }
+
+    public Mono<StockOption> calculatePrice(final StockOption stockOption) {
+        return webClient.post()
+                .uri(CALCULATE_OPTION_ENDPOINT)
                 .bodyValue(stockOption)
                 .retrieve()
                 .bodyToMono(StockOption.class);

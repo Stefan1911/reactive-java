@@ -13,13 +13,18 @@ public class DownstreamService {
     private final RestTemplate restTemplate;
 
     private final static String QUOTE_ENDPOINT = "http://localhost:8082/api/v1/downstream/quote";
+    private final static String CALCULATE_OPTION_ENDPOINT = "http://localhost:8082/api/v1/downstream/calculate/option";
     private final static String OPTION_ENDPOINT = "http://localhost:8082/api/v1/downstream/option";
 
     public StockQuote send(final StockQuote stockQuote) {
         return restTemplate.postForObject(QUOTE_ENDPOINT, stockQuote, StockQuote.class);
     }
 
-    public StockOption calculatePrice(final StockOption stockOption) {
+    public StockOption send(final StockOption stockOption) {
         return restTemplate.postForObject(OPTION_ENDPOINT, stockOption, StockOption.class);
+    }
+
+    public StockOption calculatePrice(final StockOption stockOption) {
+        return restTemplate.postForObject(CALCULATE_OPTION_ENDPOINT, stockOption, StockOption.class);
     }
 }

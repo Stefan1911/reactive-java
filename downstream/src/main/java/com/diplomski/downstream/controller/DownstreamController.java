@@ -18,21 +18,31 @@ public class DownstreamController {
 
     @PostMapping("/quote")
     public ResponseEntity<StockQuote> create(@RequestBody StockQuote stockQuote) throws InterruptedException {
-        Thread.sleep(400);
+        System.out.println("received quote");
 
-        System.out.println("recieved quote");
+        Thread.sleep(200);
+
         return ResponseEntity.ok(stockQuote);
     }
 
     @PostMapping("/option")
     public ResponseEntity<StockOption> create(@RequestBody StockOption stockOption) throws InterruptedException {
+        System.out.println("received option");
 
-        System.out.println("recieved option");
-        Thread.sleep(800);
+        Thread.sleep(200);
+
+        return ResponseEntity.ok(stockOption);
+    }
+
+    @PostMapping("/calculate/option")
+    public ResponseEntity<StockOption> calculate(@RequestBody StockOption stockOption) throws InterruptedException {
+        System.out.println("received calculate option");
+
+        Thread.sleep(200);
 
         float evaluatedPrice = RANDOM.nextFloat() * (200 - 100) + 100;
-
         stockOption.setEvaluatedPrice(evaluatedPrice);
+
         return ResponseEntity.ok(stockOption);
     }
 }

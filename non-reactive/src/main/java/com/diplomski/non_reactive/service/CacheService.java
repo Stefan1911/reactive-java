@@ -20,9 +20,10 @@ public class CacheService {
         return stockQuote;
     }
 
-    public StockOption cache(final StockOption stockOption) {
+    public StockOption cache(final StockOption stockOption) throws InterruptedException {
         template.opsForValue().set(stockOption.getId().toString(), stockOption.toString());
 
+        //Thread.sleep(100);
         return stockOption;
     }
 }

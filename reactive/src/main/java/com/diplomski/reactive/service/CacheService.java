@@ -7,6 +7,7 @@ import org.springframework.data.redis.core.ReactiveRedisOperations;
 import org.springframework.stereotype.Component;
 import reactor.core.publisher.Mono;
 
+import java.time.Duration;
 import java.util.UUID;
 
 @Component
@@ -27,6 +28,7 @@ public class CacheService {
         return stockOptionRedisOperations
                 .opsForValue()
                 .set(stockOption.getId().toString(), stockOption)
-                .map((a) -> stockOption);
+                .map((a) -> stockOption)
+                .delayElement(Duration.ofMillis(100));
     }
 }

@@ -17,7 +17,7 @@ public class StockOptionController {
     private final CreateStockOptionUseCase createStockOptionUseCase;
 
     @PostMapping
-    public ResponseEntity<StockOption> create(@RequestBody StockOption stockOption) {
+    public ResponseEntity<StockOption> create(@RequestBody StockOption stockOption) throws InterruptedException {
         var useCaseResponse = createStockOptionUseCase.create(stockOption);
 
         return ResponseEntity.ok(useCaseResponse);
