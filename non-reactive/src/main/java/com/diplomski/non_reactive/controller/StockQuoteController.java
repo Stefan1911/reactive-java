@@ -1,6 +1,7 @@
 package com.diplomski.non_reactive.controller;
 
 import com.diplomski.non_reactive.model.StockQuote;
+import com.diplomski.non_reactive.ucecase.CacheStockQuoteUseCase;
 import com.diplomski.non_reactive.ucecase.CreateStockQuoteUseCase;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
@@ -18,9 +19,18 @@ public class StockQuoteController {
 
     private final CreateStockQuoteUseCase createStockQuoteUsecase;
 
+    private final CacheStockQuoteUseCase cacheStockQuoteUseCase;
+
     @PostMapping
     public ResponseEntity<StockQuote> create(@RequestBody StockQuote stockQuote) throws ExecutionException, InterruptedException {
         var useCaseResponse = createStockQuoteUsecase.create(stockQuote);
+
+        return ResponseEntity.ok(useCaseResponse);
+    }
+
+    @PostMapping("/cache")
+    public ResponseEntity<StockQuote> cache(@RequestBody StockQuote stockQuote) {
+        var useCaseResponse = cacheStockQuoteUseCase.cache(stockQuote);
 
         return ResponseEntity.ok(useCaseResponse);
     }

@@ -29,7 +29,8 @@ class StockQuoteTestUser(HttpUser):
             "timeToMaturity": 120
         }
 
-        response = self.client.post("/api/v1/quote", json=qupteJsonBody)
+        #response = self.client.post("/api/v1/quote", json=qupteJsonBody)
+        response = self.client.post("/api/v1/quote/cache", json=qupteJsonBody)
         #response = self.client.post("/api/v1/option", json=optionJsonBody)
         print(response)
 
