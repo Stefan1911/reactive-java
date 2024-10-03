@@ -20,7 +20,7 @@ public class DownstreamController {
     public ResponseEntity<StockQuote> create(@RequestBody StockQuote stockQuote) throws InterruptedException {
         System.out.println("received quote");
 
-        Thread.sleep(200);
+        Thread.sleep(100);
 
         return ResponseEntity.ok(stockQuote);
     }
@@ -29,7 +29,7 @@ public class DownstreamController {
     public ResponseEntity<StockOption> create(@RequestBody StockOption stockOption) throws InterruptedException {
         System.out.println("received option");
 
-        Thread.sleep(200);
+        Thread.sleep(100);
 
         return ResponseEntity.ok(stockOption);
     }
@@ -38,7 +38,7 @@ public class DownstreamController {
     public ResponseEntity<StockOption> calculate(@RequestBody StockOption stockOption) throws InterruptedException {
         System.out.println("received calculate option");
 
-        Thread.sleep(200);
+        Thread.sleep(100);
 
         float evaluatedPrice = RANDOM.nextFloat() * (200 - 100) + 100;
         stockOption.setEvaluatedPrice(evaluatedPrice);
