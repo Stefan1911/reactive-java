@@ -4,25 +4,25 @@ import string
 
 class StockTestUser(HttpUser):
     
-    @task
+    @task(2)
     def createQuote(self):
         print("Sending create quote request")
         response = self.client.post("/api/v1/quote", json=self.getQuote())
         print(response.status_code)
 
-    @task
+    @task(2)
     def createOption(self):
         print("Sending create option request")
         response = self.client.post("/api/v1/option", json=self.getOption())
         print(response.status_code)
 
-    @task
+    @task(3)
     def cacheQuote(self):
         print("Sending cache quote request")
         response = self.client.post("/api/v1/quote/cache", json=self.getQuote())
         print(response.status_code)
 
-    @task
+    @task(1)
     def uploadOptions(self):
         print("Sending upload options request")
         attach = open('options.csv', 'rb')
