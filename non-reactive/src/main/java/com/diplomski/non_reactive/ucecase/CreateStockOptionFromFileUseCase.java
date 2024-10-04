@@ -24,7 +24,7 @@ public class CreateStockOptionFromFileUseCase {
 
     public List<StockOption> create(final MultipartFile multipartFile) throws IOException {
         var inputStream = multipartFile.getInputStream();
-        
+
         return csvService.parseStockOptions(inputStream);
     }
 }

@@ -1,6 +1,5 @@
 version: '3.8'
 services:
-
   postgres-service:
     container_name: 'diplomski-db'
     image: postgres:15
@@ -11,21 +10,23 @@ services:
       POSTGRES_DB: diplomski
       POSTGRES_USER: root
       POSTGRES_PASSWORD: root
+    volumes:
+      - ./db-init-scripts:/docker-entrypoint-initdb.d
   redis:
     container_name: 'diplomski-redis'
     image: 'redis:latest'
     command: redis-server --loglevel warning --requirepass s3KYGcA7VFW3jxLtoGw6Usi6
     ports:
       - '6371:6379'
-  locust-master:
-    image: locustio/locust
-    ports:
-     - "8089:8089"
-    volumes:
-      - ./:/mnt/locust
-    command: -f /mnt/locust/locustfile.py --master --host http://host.docker.internal:8080
-  locust-worker:
-    image: locustio/locust
-    volumes:
-      - ./:/mnt/locust
-    command: -f /mnt/locust/locustfile.py --worker --master-host locust-master
+  # locust-master:
+  #   image: locustio/locust
+  #   ports:
+  #    - "8089:8089"
+  #   volumes:
+  #     - ./:/mnt/locust
+  #   command: -f /mnt/locust/locustfile.py --master --host http://host.docker.internal:8080
+  # locust-worker:
+  #   image: locustio/locust
+  #   volumes:
+  #     - ./:/mnt/locust
+  #   command: -f /mnt/locust/locustfile.py --worker --master-host locust-master
