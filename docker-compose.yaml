@@ -30,3 +30,4 @@ services:
     volumes:
       - ./:/mnt/locust
     command: -f /mnt/locust/locustfile.py --worker --master-host locust-master
+
